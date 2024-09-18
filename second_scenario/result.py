@@ -8,12 +8,13 @@ class SbisResultSecondScenarioPage:
         self.browser = browser
 
     def element_check_text(self, xpath):
-        """"""
+        """Возвращает текст элементта"""
         element = self.browser.find_element(By.XPATH, xpath)
         time.sleep(5)
         return element.text
 
     def regional_partners(self, city):
+        """Проверяет что блок с партнерами есть и регион соответствует"""
         element = self.browser.find_element(
             By.XPATH,
             '//*[@id="contacts_list"]/div/div[2]/div[2]/div/div[2]/div[1]/div[3]',
@@ -30,8 +31,7 @@ class SbisResultSecondScenarioPage:
         element.click()
 
     def link_check(self, region):
-        """Возвращает адрес текущей страницы"""
-
+        """ВПроверяет наличие нужного региона в адресе страницы"""
         link = self.browser.current_url
         if region in link:
 
