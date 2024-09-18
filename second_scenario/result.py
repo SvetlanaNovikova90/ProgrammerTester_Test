@@ -1,7 +1,4 @@
 import time
-
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 
 
@@ -16,25 +13,35 @@ class SbisResultSecondScenarioPage:
         time.sleep(5)
         return element.text
 
+    def regional_partners(self, city):
+        element = self.browser.find_element(
+            By.XPATH,
+            '//*[@id="contacts_list"]/div/div[2]/div[2]/div/div[2]/div[1]/div[3]',
+        )
+        partner = self.browser.find_element(By.XPATH, '//*[@id="city-id-2"]')
+        text = partner.text
+        if element and city in text:
+            return True
+        return False
 
     def click(self, xpath):
         """Клик на элемент"""
         element = self.browser.find_element(By.XPATH, xpath)
+        element.click()
 
-        actions = ActionChains(self.browser)
-        actions.move_to_element(element)
-        self.browser.execute_script("arguments[0].click();", element)
-
-    def link_check(self):
+    def link_check(self, region):
         """Возвращает адрес текущей страницы"""
 
         link = self.browser.current_url
-        return link
+        if region in link:
 
-    def checking_parameters(self, x, y):
-        """Проверяет, что параметры 'width' и 'height' одинаковы для всех элементов из списка"""
-        elements = self.browser.find_elements(By.CLASS_NAME, 'tensor_ru-About__block3-image new_lazy loaded')
-        for element in elements:
-            if element('width') != x and element('height') != y:
-                return False
-        return True
+            return True
+        return False
+
+    def title_check(self, region):
+        """Проверка изменения title"""
+        title = self.browser.title
+
+        if region in title:
+            return True
+        return False

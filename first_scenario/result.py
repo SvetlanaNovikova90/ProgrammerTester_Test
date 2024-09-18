@@ -32,8 +32,10 @@ class SbisResultFirstScenarioPage:
 
     def checking_parameters(self, x, y):
         """Проверяет, что параметры 'width' и 'height' одинаковы для всех элементов из списка"""
-        elements = self.browser.find_elements(By.CLASS_NAME, 'tensor_ru-About__block3-image new_lazy loaded')
+        elements = self.browser.find_elements(
+            By.CLASS_NAME, "tensor_ru-About__block3-image new_lazy loaded"
+        )
         for element in elements:
-            if element('width') != x and element('height') != y:
+            if element("width") != x and element("height") != y:
                 return False
         return True

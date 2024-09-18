@@ -3,8 +3,8 @@ from selenium.webdriver.common.keys import Keys
 
 
 class SbisGoSearchPage:
-    URL = 'https://sbis.ru/'
-    SEARCH_INPUT = (By.XPATH, 'search_form_input_homepage')
+    URL = "https://sbis.ru/"
+    SEARCH_INPUT = (By.XPATH, "search_form_input_homepage")
 
     def __init__(self, browser):
         self.browser = browser
